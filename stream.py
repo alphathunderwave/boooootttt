@@ -7,12 +7,12 @@ from tweepy import OAuthHandler
 from tweepy import Stream
 import boooootttt as bot
 
-
+#creates a new instance of boooootttt. also adds beeeeennnn_ to the list of developers
 bot_ = bot.bot()
 count = 0
 dev = ['beeeeennnn_']
-
 class StdOutListener(StreamListener):
+	# on_status runs any time someone @'s the bot
 	def on_status(self, status):
 		global count
 		count = count + 1
@@ -23,6 +23,7 @@ class StdOutListener(StreamListener):
 			pass
 
 		else:
+			#developer options
 			if status.user.screen_name in dev:
 				if 'add_dev' in status.text:
 					text = status.text.split(' ')

@@ -1,18 +1,18 @@
-from __future__ import absolute_import, print_function
+"""import funtions to use"""
 
 import tweepy, sys, random, pathlib
 import markovgen
 import tweetdumper
 from time import sleep
-
 from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 from tweepy import Stream
-import glob
 import config
 
 
 class bot():
+	"""__init__ initiates the bot, sets up consumer and access keys and secrets and logs into twitter.
+		it also creates a list for followers. config.py is needed to complete the login"""
 	def __init__(self):
 		self.CONSUMER_KEY = config.CONSUMER_KEY
 		self.CONSUMER_SECRET = config.CONSUMER_SECRET
@@ -25,10 +25,13 @@ class bot():
 
 		self.followers = []
 
+	"""do_tweet takes in a string and submits it to twitter. the text is trimmed to
+		make sure that the tweet does not go over twitters limit of 140 characters"""
 	def do_tweet(self,text):
 		self.api.update_status(text[0:140])
 		print('tweet sent')
-
+	"""dump uses tweetdumper to make a list of all the tweets for each follower.
+		these tweets are written to a file named database.txt"""
 	def dump(self):
 		tweet_list = []
 		bad_followers = []
@@ -54,7 +57,8 @@ class bot():
 
 		return bad_followers
 
-
+	"""reply takes in a twitter status and a string and submits the string as a reply to the status.
+		like the do_tweet function, the tweet is limited to 140 characters"""
 	def reply(self,status,text):
 		user = '@' + status.user.screen_name
 		id = status.id
