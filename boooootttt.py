@@ -60,7 +60,7 @@ class bot():
 		id = status.id
 		try:
 			self.api.update_status((user +' ' + text)[0:140],id)
-			print("tweet sent ot ")
+			print("tweet sent to: " + user.screen_name)
 
 		except tweepy.TweepError as e:
 			print(e)
