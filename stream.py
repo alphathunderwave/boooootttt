@@ -1,7 +1,6 @@
 import tweepy, random
 import markovgen
 from time import sleep
-
 from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 from tweepy import Stream
@@ -17,7 +16,8 @@ class StdOutListener(StreamListener):
 		global count
 		count = count + 1
 		if count == 15:
-			sleep(15)
+			sleep(900)
+			count =0
 
 		if status.user.screen_name == 'boooootttt_':
 			pass
