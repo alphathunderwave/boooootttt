@@ -46,7 +46,7 @@ class StdOutListener(StreamListener):
 					bot_.do_tweet(response)
 				else:
 					response = markov.generate_markov_text()
-					bot_.reply(status,str(response))S
+					bot_.reply(status,str(response))
 
 			else:
 				response = markov.generate_markov_text()
