@@ -24,6 +24,7 @@ class bot():
 		self.api = tweepy.API(self.auth, wait_on_rate_limit = True)
 		self.followers = []
 
+
 	"""do_tweet takes in a string and submits it to twitter. the text is trimmed to
 		make sure that the tweet does not go over twitters limit of 140 characters"""
 
@@ -48,27 +49,14 @@ class bot():
 		these tweets are written to a file named database.txt"""
 
 	def dump(self):
-		tweet_list = []
 		bad_followers = []
-		fol = self.api.followers()
-		for i in range(len(fol)):
-			print(fol[i].screen_name)
+		for follower in self.api.followers():
+			print(follower.screen_name)
 			try:
-				tweets = tweetdumper.get_all_tweets(fol[i].screen_name)
-				for tweet in tweets:
-					if 'RT' in tweet.text:
-						pass
-
-					else:
-						tweet_list.append(tweet.text)
-						tweet_list.append(' ')
+				tweetdumper.get_all_tweets(follower.screen_name)
 
 			except tweepy.TweepError as e:
 				print(e)
-				bad_followers.append(fol[i].screen_name)
-
-		with open('database.txt','w') as outfile:
-			for tweet in tweet_list:
-				outfile.write(tweet)
+				bad_followers.append(follower.screen_name)
 
 		return bad_followers

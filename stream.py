@@ -28,6 +28,9 @@ class StdOutListener(StreamListener):
 				if 'add_dev' in status.text:
 					text = status.text.split(' ')
 					dev.append(text[2])
+				elif 'remove_dev' in status.text:
+					if status.text[2] in dev:
+						dev.pop(status.text[2])
 
 				elif 'dump' in status.text:
 					dump = bot_.dump()
