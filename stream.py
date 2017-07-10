@@ -44,6 +44,9 @@ class StdOutListener(StreamListener):
 					text = status.text.split(' ')
 					response = '@' + text[2] + ' ' + markov.generate_markov_text()
 					bot_.do_tweet(response)
+				else:
+					response = markov.generate_markov_text()
+					bot_.reply(status,str(response))S
 
 			else:
 				response = markov.generate_markov_text()
