@@ -11,6 +11,8 @@ import boooootttt as bot
 
 
 def get_all_tweets(screen_name):
+	with open('database.txt','w') as outfile:
+		outfile.write('')
 	database = []
 
 	bot_ = bot.bot()
@@ -45,7 +47,7 @@ def get_all_tweets(screen_name):
 
 		print("...%s tweets downloaded so far" % (len(alltweets)))
 
-		with open('databse.txt','a') as outfile:
+		with open('database.txt','a') as outfile:
 			for tweet in alltweets:
 				if 'RT' in tweet.text:
 					pass
