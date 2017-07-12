@@ -43,7 +43,7 @@ class bot():
 		id = status.id
 		try:
 			self.api.update_status((user +' ' + text)[0:140],id)
-			print("tweet sent to: " + user.screen_name)
+			print("tweet sent to: " + user)
 			self.write_tweet(text)
 
 		except tweepy.TweepError as e:
@@ -97,5 +97,5 @@ class bot():
 
 	def blacklist_remove(self,name):
 		if name in blacklist:
-			blacklist.pop(name):
+			blacklist.pop(name)
 			print(name + ' removed from blacklist')

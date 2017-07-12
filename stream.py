@@ -35,7 +35,7 @@ class StdOutListener(StreamListener):
 		if status.user.screen_name == 'boooootttt_':
 			pass
 		for user in bot_.blacklist:
-			if status.user.screen_name = user:
+			if status.user.screen_name == user:
 				pass
 		else:
 			if status.user.screen_name in dev:
@@ -67,9 +67,6 @@ class StdOutListener(StreamListener):
 					text = status.text.split(' ')
 					response = '@' + text[2] + ' ' + markov.generate_markov_text()
 					bot_.do_tweet(response)
-				else:
-					response = markov.generate_markov_text()
-					bot_.reply(status,str(response))
 
 			else:
 
