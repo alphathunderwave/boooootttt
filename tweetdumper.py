@@ -52,4 +52,4 @@ def get_all_tweets(screen_name):
 				if 'RT' in tweet.text:
 					pass
 				else:
-					outfile.write(tweet.text)
+					outfile.write(tweet.text + ' ')
