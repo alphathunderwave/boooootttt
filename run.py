@@ -19,8 +19,12 @@ with open('database.txt','r') as infile:
 	hours"""
 
 while True:
-	bot_.check_followers()
-	text = markov.generate_markov_text()
-	bot_.do_tweet(text)
+	try:
+		bot_.check_followers()
+		text = markov.generate_markov_text()
+		bot_.do_tweet(text)
+	except tweepy.TweepError as e:
+		print(e)
+
 	rando = random.randint(3600,10800)
 	sleep(rando)
