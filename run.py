@@ -1,9 +1,11 @@
 """import functions to use"""
 
 import tweepy, random
+from apscheduler.schedulers.blocking import BlockingScheduler
 import markovgen
-from time import sleep
+import time
 import boooootttt as bot
+
 
 """creates a new instance of boooootttt"""
 
@@ -15,15 +17,17 @@ with open('database.txt','r') as infile:
 	markov = markovgen.Markov(infile)
 
 """calls generate_markov_text and sends that to the bot to tweet out.
-	then the loops sleeps for a random amout of time between one and three
+	the BlockingScheduler schedules run_tweet as a job and runs it every 1-3
 	hours"""
 
-while True:
+def run_tweet():
 	try:
 		text = markov.generate_markov_text()
 		bot_.do_tweet(text)
 	except tweepy.TweepError as e:
 		print(e)
 
-	rando = random.randint(3600,10800)
-	sleep(rando)
+rando = random.randint(3600,10800)
+scheduler = BlockingScheduler()
+scheduler.add_job(run_tweet,'interval', minutes = rando)
+scheduler.start()

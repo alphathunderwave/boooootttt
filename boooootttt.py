@@ -76,6 +76,7 @@ class bot():
 		friends =[]
 		for friend in f:
 			friends.append(self.api.get_user(friend).screen_name)
+			
 		for follower in self.api.followers():
 			if follower.screen_name not in friends:
 				try:
@@ -104,6 +105,8 @@ class bot():
 			blacklist.pop(name)
 			print(name + ' removed from blacklist')
 
+	"""dev_tools is a list of tools that can be accesed by devs via twitter"""
+
 	def dev_tools(self, input):
 		if input =='dump':
 			dump()
@@ -114,6 +117,6 @@ class bot():
 
 		elif input ==' followers':
 			check_followers()
-			
+
 		else:
 			do_tweet('unknown command')
