@@ -24,6 +24,7 @@ class bot():
 		self.auth.set_access_token(self.ACCESS_KEY, self.ACCESS_SECRET)
 		self.api = tweepy.API(self.auth, wait_on_rate_limit = True)
 		self.blacklist = []
+		self.developers =['beeeeennnn_']
 
 	"""do_tweet takes in a string and submits it to twitter. the text is trimmed
 	 to make sure that the tweet does not go over twitters limit of 140
@@ -90,6 +91,9 @@ class bot():
 		with open('tweetlist.txt','a') as outfile:
 			outfile.write(text)
 
+	"""blacklist_add and blacklist_remove add and remove members to the
+	blacklist"""
+
 	def blacklist_add(self,name):
 		if name not in self.blacklist:
 			blacklist.append(name)
@@ -99,3 +103,17 @@ class bot():
 		if name in blacklist:
 			blacklist.pop(name)
 			print(name + ' removed from blacklist')
+
+	def dev_tools(self, input):
+		if input =='dump':
+			dump()
+
+		elif input == 'tweet':
+			text = markov.generate_markov_text()
+			bot_.do_tweet(text)
+
+		elif input ==' followers':
+			check_followers()
+			
+		else:
+			do_tweet('unknown command')

@@ -36,7 +36,6 @@ class StdOutListener(StreamListener):
 
 		else:
 			"""this is the general reply for anyone who tagged the bot"""
-
 			response = markov.generate_markov_text()
 			bot_.reply(status,str(response))
 

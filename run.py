@@ -20,7 +20,6 @@ with open('database.txt','r') as infile:
 
 while True:
 	try:
-		bot_.check_followers()
 		text = markov.generate_markov_text()
 		bot_.do_tweet(text)
 	except tweepy.TweepError as e:
