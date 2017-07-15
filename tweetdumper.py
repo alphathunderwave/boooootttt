@@ -11,9 +11,6 @@ import boooootttt as bot
 
 
 def get_all_tweets(screen_name):
-	with open('database.txt','w') as outfile:
-		outfile.write('')
-	database = []
 
 	bot_ = bot.bot()
 	api = bot_.api

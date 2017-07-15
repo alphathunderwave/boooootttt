@@ -55,6 +55,8 @@ class bot():
 
 	def dump(self):
 		bad_followers = []
+		with open('database.txt','w') as outfile:
+			outfile.write('')
 		for follower in self.api.followers():
 			print(follower.screen_name)
 			try:
@@ -76,7 +78,7 @@ class bot():
 		friends =[]
 		for friend in f:
 			friends.append(self.api.get_user(friend).screen_name)
-			
+
 		for follower in self.api.followers():
 			if follower.screen_name not in friends:
 				try:

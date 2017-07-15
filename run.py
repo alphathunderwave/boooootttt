@@ -19,7 +19,7 @@ with open('database.txt','r') as infile:
 """calls generate_markov_text and sends that to the bot to tweet out.
 	the BlockingScheduler schedules run_tweet as a job and runs it every 1-3
 	hours"""
-
+	
 def run_tweet():
 	try:
 		text = markov.generate_markov_text()
