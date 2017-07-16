@@ -21,6 +21,6 @@ with open('database.txt','r') as infile:
 while True:
 	bot_.check_followers()
     text = markov.generate_markov_text()
-    #bot_.do_tweet(text)
+    bot_.do_tweet(text)
     rando = random.randint(3600,10800)
     sleep(rando)
