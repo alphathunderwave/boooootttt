@@ -40,6 +40,11 @@ class bot():
 	 characters"""
 
 	def reply(self,status,text):
+		words = status.text.split(' ')
+		command = words[1]
+		if '-' in command:
+			print('hello')
+
 		user = '@' + status.user.screen_name
 		id = status.id
 		try:
