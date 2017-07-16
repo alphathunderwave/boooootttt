@@ -43,17 +43,32 @@ class bot():
 		words = status.text.split(' ')
 		command = words[1]
 		if '-' in command:
-			print('hello')
+			print('dev: ')
+			if command == '-dump':
+				self.dump()
+			elif command == '-check_followers':
+				self.check_followers()
+			elif command == '-blacklist_add':
+				try:
+					blacklist_add(words[2])
+				except Exception as e:
+					print(e)
+			elif command == '-blacklist_remove':
+				try:
+					blacklist_remove(words[2])
+				except Exception as e:
+					print(e) 
 
-		user = '@' + status.user.screen_name
-		id = status.id
-		try:
-			self.api.update_status((user +' ' + text)[0:140],id)
-			print("tweet sent to: " + user)
-			self.write_tweet(text)
+		else:
+			user = '@' + status.user.screen_name
+			id = status.id
+			try:
+				self.api.update_status((user +' ' + text)[0:140],id)
+				print("tweet sent to: " + user)
+				self.write_tweet(text)
 
-		except tweepy.TweepError as e:
-			print(e)
+			except tweepy.TweepError as e:
+				print(e)
 
 	"""dump uses tweetdumper to make a list of all the tweets for each follower.
 		these tweets are written to a file named database.txt"""
