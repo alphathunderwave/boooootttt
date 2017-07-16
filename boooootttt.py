@@ -62,28 +62,35 @@ class bot():
 
 				elif command == '-blacklist_add':
 					try:
-						text = blacklist_add(words[2])
+						text = self.blacklist_add(words[2])
 
 					except Exception as e:
 						print(e)
 
 				elif command == '-blacklist_remove':
 					try:
-						text = blacklist_remove(words[2])
+						text = self.blacklist_remove(words[2])
 
 					except Exception as e:
 						print(e)
+
+				elif command == '-ls_blacklist':
+					text = self.ls_blacklist()
 
 				elif command == 'dev_add':
 					try:
-						text = dev_add(words[2])
+						text = self.dev_add(words[2])
 					except Exception as e:
 						print(e)
-				elif command =='dev_remove':
+				elif command == 'dev_remove':
 					try:
-						text = dev_remove(words[2])
+						text = self.dev_remove(words[2])
 					except Exception as e:
 						print(e)
+				elif command == 'ls_dev':
+					text = self.ls_dev()
+				else:
+					text = 'unknown command'
 
 		try:
 			self.api.update_status((user +' ' + str(text))[0:140],id)
@@ -92,6 +99,12 @@ class bot():
 
 		except tweepy.TweepError as e:
 			print(e)
+
+	"""wrtite_tweet writes a sent tweet to a file for saving"""
+
+	def write_tweet(self,text):
+		with open('tweetlist.txt','a') as outfile:
+			outfile.write(text)
 
 	"""dump uses tweetdumper to make a list of all the tweets for each follower.
 		these tweets are written to a file named database.txt"""
@@ -135,14 +148,8 @@ class bot():
 
 		return bad_friends
 
-	"""wrtite_tweet writes a sent tweet to a file for saving"""
-
-	def write_tweet(self,text):
-		with open('tweetlist.txt','a') as outfile:
-			outfile.write(text)
-
 	"""blacklist_add and blacklist_remove add and remove members to the
-	blacklist"""
+	blacklist. ls_blacklist returns the blacklist"""
 
 	def blacklist_add(self,name):
 		if name not in self.blacklist:
@@ -157,7 +164,8 @@ class bot():
 	def ls_blacklist(self):
 		return str(blacklist)
 
-	"""dev_add and dev_remove and and remove members to the developers list"""
+	"""dev_add and dev_remove and and remove members to the developers list.
+	ls_dev returns the dev list"""
 
 	def dev_add(self,name):
 		if name not in self.developers:
@@ -170,6 +178,6 @@ class bot():
 		elif name in developers:
 			developers.pop(name)
 			return name + ' removed from developers'
-			
+
 	def ls_dev(self):
 		return str(developers)
