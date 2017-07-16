@@ -154,6 +154,9 @@ class bot():
 			blacklist.pop(name)
 			return name + ' removed from blacklist'
 
+	def ls_blacklist(self):
+		return str(blacklist)
+
 	"""dev_add and dev_remove and and remove members to the developers list"""
 
 	def dev_add(self,name):
@@ -167,3 +170,6 @@ class bot():
 		elif name in developers:
 			developers.pop(name)
 			return name + ' removed from developers'
+			
+	def ls_dev(self):
+		return str(developers)
