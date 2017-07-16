@@ -19,8 +19,7 @@ with open('database.txt','r') as infile:
 	hours"""
 
 while True:
-	bot_.check_followers()
-    text = markov.generate_markov_text()
-    bot_.do_tweet(text)
-    rando = random.randint(3600,10800)
-    sleep(rando)
+	text = markov.generate_markov_text()
+	bot_.do_tweet(text)
+	rando = random.randint(3600,10800)
+	sleep(rando)
