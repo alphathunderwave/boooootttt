@@ -23,6 +23,7 @@ class bot():
 		self.auth = tweepy.OAuthHandler(self.CONSUMER_KEY, self.CONSUMER_SECRET)
 		self.auth.set_access_token(self.ACCESS_KEY, self.ACCESS_SECRET)
 		self.api = tweepy.API(self.auth, wait_on_rate_limit = True)
+		self.following = self.api.friends_ids('boooootttt_')
 		self.blacklist = []
 		self.developers =['beeeeennnn_']
 
@@ -99,6 +100,21 @@ class bot():
 
 		except tweepy.TweepError as e:
 			print(e)
+
+	def random_reply(self):
+		randuser = random.choice(self.following)
+		timeline = self.api.user_timeline(randuser)
+		for tweet in timeline:
+			if 'RT' in tweet.text:
+				timeline.remove(tweet)
+
+		text = timeline[0].text
+		try:
+			print(timeline[0].text)
+		except Exception as e:
+			print('no tweets')
+
+
 
 	"""wrtite_tweet writes a sent tweet to a file for saving"""
 
