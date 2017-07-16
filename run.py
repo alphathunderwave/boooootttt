@@ -17,9 +17,9 @@ with open('database.txt','r') as infile:
 """calls generate_markov_text and sends that to the bot to tweet out.
 	then the loops sleeps for a random amout of time between one and three
 	hours"""
-	
+
 while True:
 	text = markov.generate_markov_text()
-	#bot_.do_tweet(text)
+	bot_.do_tweet(text)
 	rando = random.randint(3600,10800)
 	sleep(rando)
