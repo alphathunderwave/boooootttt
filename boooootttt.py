@@ -42,33 +42,56 @@ class bot():
 	def reply(self,status,text):
 		words = status.text.split(' ')
 		command = words[1]
-		if '-' in command:
-			print('dev: ')
-			if command == '-dump':
-				self.dump()
-			elif command == '-check_followers':
-				self.check_followers()
-			elif command == '-blacklist_add':
-				try:
-					blacklist_add(words[2])
-				except Exception as e:
-					print(e)
-			elif command == '-blacklist_remove':
-				try:
-					blacklist_remove(words[2])
-				except Exception as e:
-					print(e) 
+		user = '@' + status.user.screen_name
+		id = status.id
 
-		else:
-			user = '@' + status.user.screen_name
-			id = status.id
-			try:
-				self.api.update_status((user +' ' + text)[0:140],id)
-				print("tweet sent to: " + user)
-				self.write_tweet(text)
+		if status.user.screen_name == 'boooootttt_':
+			pass
 
-			except tweepy.TweepError as e:
-				print(e)
+		elif status.user.screen_name in self.blacklist:
+			pass
+
+		elif status.user.screen_name in self.developers:
+			if '-' in command:
+				print('dev: ')
+				if command == '-dump':
+					text = self.dump()
+
+				elif command == '-check_followers':
+					text = self.check_followers()
+
+				elif command == '-blacklist_add':
+					try:
+						text = blacklist_add(words[2])
+
+					except Exception as e:
+						print(e)
+
+				elif command == '-blacklist_remove':
+					try:
+						text = blacklist_remove(words[2])
+
+					except Exception as e:
+						print(e)
+
+				elif command == 'dev_add':
+					try:
+						text = dev_add(words[2])
+					except Exception as e:
+						print(e)
+				elif command =='dev_remove':
+					try:
+						text = dev_remove(words[2])
+					except Exception as e:
+						print(e)
+
+		try:
+			self.api.update_status((user +' ' + str(text))[0:140],id)
+			print("tweet sent to: " + user)
+			self.write_tweet(str(text))
+
+		except tweepy.TweepError as e:
+			print(e)
 
 	"""dump uses tweetdumper to make a list of all the tweets for each follower.
 		these tweets are written to a file named database.txt"""
@@ -96,6 +119,7 @@ class bot():
 		print('checking for new followers')
 		f = self.api.friends_ids('boooootttt_')
 		friends =[]
+		bad_friends=[]
 		for friend in f:
 			friends.append(self.api.get_user(friend).screen_name)
 
@@ -107,6 +131,9 @@ class bot():
 
 				except tweepy.TweepError as e :
 					print(e)
+					bad_friends.append(follower.screen_name)
+
+		return bad_friends
 
 	"""wrtite_tweet writes a sent tweet to a file for saving"""
 
@@ -120,25 +147,23 @@ class bot():
 	def blacklist_add(self,name):
 		if name not in self.blacklist:
 			blacklist.append(name)
-			print(name + ' added to blacklist')
+			return name + ' added to blacklist'
 
 	def blacklist_remove(self,name):
 		if name in blacklist:
 			blacklist.pop(name)
-			print(name + ' removed from blacklist')
+			return name + ' removed from blacklist'
 
-	"""dev_tools is a list of tools that can be accesed by devs via twitter"""
+	"""dev_add and dev_remove and and remove members to the developers list"""
 
-	def dev_tools(self, input):
-		if input =='dump':
-			dump()
+	def dev_add(self,name):
+		if name not in self.developers:
+			developers.append(name)
+			return name + ' added to developers'
 
-		elif input == 'tweet':
-			text = markov.generate_markov_text()
-			bot_.do_tweet(text)
-
-		elif input ==' followers':
-			check_followers()
-
-		else:
-			do_tweet('unknown command')
+	def dev_remove(self,name):
+		if name == 'beeeeennnn_':
+			return 'cannot remove beeeeennnn_ from dev list'
+		elif name in developers:
+			developers.pop(name)
+			return name + ' removed from developers'
