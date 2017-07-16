@@ -101,20 +101,33 @@ class bot():
 		except tweepy.TweepError as e:
 			print(e)
 
-	def random_reply(self):
+	"""random_reply replies to a random tweet from someone it is following"""
+
+	def random_reply(self,text):
+		randuser = self.api.get_user(random.choice(self.following))
+		print(randuser.screen_name)
+		timeline = self.api.user_timeline(randuser.screen_name)
+		for tweet in timeline:
+			if 'RT' in tweet.text:
+				timeline.remove(tweet)
+
+		print('random reply to: ')
+		self.reply(timeline[0],text)
+
+	"""random_retweet retweets a random tweet from someone it is following"""
+
+	def random_retweet(self):
 		randuser = random.choice(self.following)
 		timeline = self.api.user_timeline(randuser)
 		for tweet in timeline:
 			if 'RT' in tweet.text:
 				timeline.remove(tweet)
 
-		text = timeline[0].text
+		print('random retweet to: ')
 		try:
-			print(timeline[0].text)
-		except Exception as e:
-			print('no tweets')
-
-
+			self.api.retweet(timeline[0])
+		except tweepy.TweepError as e:
+			print(e)
 
 	"""wrtite_tweet writes a sent tweet to a file for saving"""
 
