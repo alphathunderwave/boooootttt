@@ -33,7 +33,7 @@ class bot():
 
 	def do_tweet(self,text):
 		self.api.update_status(text[0:140])
-		print('tweet sent')
+		self.log('tweet sent' )
 		self.write_tweet(text)
 
 	"""reply takes in a twitter status and a string and submits the string as a
@@ -54,7 +54,7 @@ class bot():
 
 		elif status.user.screen_name in self.developers:
 			if '-' in command:
-				print('dev: ')
+				self.log('dev: ')
 				if command == '-dump':
 					text = self.dump()
 
@@ -66,14 +66,14 @@ class bot():
 						text = self.blacklist_add(words[2])
 
 					except Exception as e:
-						print(e)
+						self.log(e)
 
 				elif command == '-blacklist_remove':
 					try:
 						text = self.blacklist_remove(words[2])
 
 					except Exception as e:
-						print(e)
+						self.log(e)
 
 				elif command == '-ls_blacklist':
 					text = self.ls_blacklist()
@@ -82,12 +82,12 @@ class bot():
 					try:
 						text = self.dev_add(words[2])
 					except Exception as e:
-						print(e)
+						self.log(e)
 				elif command == 'dev_remove':
 					try:
 						text = self.dev_remove(words[2])
 					except Exception as e:
-						print(e)
+						self.log(e)
 				elif command == 'ls_dev':
 					text = self.ls_dev()
 				else:
@@ -95,23 +95,23 @@ class bot():
 
 		try:
 			self.api.update_status((user +' ' + str(text))[0:140],id)
-			print("tweet sent to: " + user)
+			self.log("tweet sent to: " + user)
 			self.write_tweet(str(text))
 
 		except tweepy.TweepError as e:
-			print(e)
+			self.log(e)
 
 	"""random_reply replies to a random tweet from someone it is following"""
 
 	def random_reply(self,text):
 		randuser = self.api.get_user(random.choice(self.following))
-		print(randuser.screen_name)
+		self.log(randuser.screen_name)
 		timeline = self.api.user_timeline(randuser.screen_name)
 		for tweet in timeline:
 			if 'RT' in tweet.text:
 				timeline.remove(tweet)
 
-		print('random reply to: ')
+		self.log('random reply to: ')
 		self.reply(timeline[0],text)
 
 	"""random_retweet retweets a random tweet from someone it is following"""
@@ -123,11 +123,11 @@ class bot():
 			if 'RT' in tweet.text:
 				timeline.remove(tweet)
 
-		print('random retweet to: ')
+		self.log('random retweet to: ')
 		try:
 			self.api.retweet(timeline[0])
 		except tweepy.TweepError as e:
-			print(e)
+			self.log(e)
 
 	"""wrtite_tweet writes a sent tweet to a file for saving"""
 
@@ -143,12 +143,12 @@ class bot():
 		with open('database.txt','w') as outfile:
 			outfile.write('')
 		for follower in self.api.followers():
-			print(follower.screen_name)
+			self.log(follower.screen_name)
 			try:
 				tweetdumper.get_all_tweets(follower.screen_name)
 
 			except tweepy.TweepError as e:
-				print(e)
+				self.log(e)
 				bad_followers.append(follower.screen_name)
 
 		return bad_followers
@@ -158,7 +158,7 @@ class bot():
 	 is not already following"""
 
 	def check_followers(self):
-		print('checking for new followers')
+		self.log('checking for new followers')
 		f = self.api.friends_ids('boooootttt_')
 		friends =[]
 		bad_friends=[]
@@ -169,10 +169,10 @@ class bot():
 			if follower.screen_name not in friends:
 				try:
 					self.api.create_friendship(follower.screen_name)
-					print('now following: ' + follower.screen_name)
+					self.log('now following: ' + follower.screen_name)
 
 				except tweepy.TweepError as e :
-					print(e)
+					self.log(e)
 					bad_friends.append(follower.screen_name)
 
 		return bad_friends
@@ -210,3 +210,8 @@ class bot():
 
 	def ls_dev(self):
 		return str(developers)
+
+	def log(self,text):
+		with open('log.txt','a') as outfile:
+			outfile.write(text + '\n')
+		print(text)

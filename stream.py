@@ -45,7 +45,7 @@ class StdOutListener(StreamListener):
 		happen. if it does something is broken and needs to be fixed"""
 
 	def on_error(self, status):
-		print(status)
+		bot_.log(status)
 		return False
 
 """new instance of StdOutListener and markov using database.txt as an infile.
@@ -56,6 +56,6 @@ l = StdOutListener()
 with open('database.txt','r') as infile:
 	markov = markovgen.Markov(infile)
 
-print('Listening')
+bot_.log('Listening')
 stream = Stream(bot_.auth, l)
 stream.userstream(_with='user')
