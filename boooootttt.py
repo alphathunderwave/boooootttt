@@ -32,9 +32,13 @@ class bot():
 	 characters"""
 
 	def do_tweet(self,text):
-		self.api.update_status(text[0:140])
-		self.log('tweet sent' )
-		self.write_tweet(text)
+		try:
+			self.api.update_status(text[0:140])
+			self.log('tweet sent' )
+			self.write_tweet(text)
+		except tweepy.TweepError as e:
+			self.log(e)
+
 
 	"""reply takes in a twitter status and a string and submits the string as a
 	reply to the status. like the do_tweet function, the tweet is limited to 140
@@ -65,30 +69,30 @@ class bot():
 					try:
 						text = self.blacklist_add(words[2])
 
-					except Exception as e:
+					except tweepy.TweepError as e:
 						self.log(e)
 
 				elif command == '-blacklist_remove':
 					try:
 						text = self.blacklist_remove(words[2])
 
-					except Exception as e:
+					except tweepy.TweepError as e:
 						self.log(e)
 
 				elif command == '-ls_blacklist':
 					text = self.ls_blacklist()
 
-				elif command == 'dev_add':
+				elif command == '-dev_add':
 					try:
 						text = self.dev_add(words[2])
-					except Exception as e:
+					except tweepy.TweepError as e:
 						self.log(e)
-				elif command == 'dev_remove':
+				elif command == '-dev_remove':
 					try:
 						text = self.dev_remove(words[2])
-					except Exception as e:
+					except tweepy.TweepError as e:
 						self.log(e)
-				elif command == 'ls_dev':
+				elif command == '-ls_dev':
 					text = self.ls_dev()
 				else:
 					text = 'unknown command'
@@ -182,34 +186,36 @@ class bot():
 
 	def blacklist_add(self,name):
 		if name not in self.blacklist:
-			blacklist.append(name)
+			self.blacklist.append(name)
 			return name + ' added to blacklist'
 
 	def blacklist_remove(self,name):
-		if name in blacklist:
-			blacklist.pop(name)
+		if name in self.blacklist:
+			self.blacklist.pop(name)
 			return name + ' removed from blacklist'
 
 	def ls_blacklist(self):
-		return str(blacklist)
+		return str(self.blacklist)
 
 	"""dev_add and dev_remove and and remove members to the developers list.
 	ls_dev returns the dev list"""
 
 	def dev_add(self,name):
 		if name not in self.developers:
-			developers.append(name)
+			self.developers.append(name)
 			return name + ' added to developers'
 
 	def dev_remove(self,name):
 		if name == 'beeeeennnn_':
 			return 'cannot remove beeeeennnn_ from dev list'
-		elif name in developers:
-			developers.pop(name)
+		elif name in self.developers:
+			self.developers.pop(name)
 			return name + ' removed from developers'
 
 	def ls_dev(self):
-		return str(developers)
+		return str(self.developers)
+
+"""log keeps track of all error or success messages the bot creates"""
 
 	def log(self,text):
 		with open('log.txt','a') as outfile:
