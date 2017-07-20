@@ -1,6 +1,6 @@
 """import funtions to use"""
 
-import tweepy, sys, random, pathlib
+import tweepy, sys, random, pathlib, datetime
 import markovgen
 import tweetdumper
 from time import sleep
@@ -215,9 +215,16 @@ class bot():
 	def ls_dev(self):
 		return str(self.developers)
 
-"""log keeps track of all error or success messages the bot creates"""
+	"""log keeps track of all error or success messages the bot creates"""
 
 	def log(self,text):
+		date_time = datetime.datetime.now()
+
+		date = date_time.date()
+		time = date_time.time()
+
+		out = str(date.month) + '/' + str(date.day) + '/' + str(date.year) + ' at ' + str(time.hour) + ':' + str(time.minute) + ' ' + text + '\n'
 		with open('log.txt','a') as outfile:
-			outfile.write(text + '\n')
-		print(text)
+			outfile.write(out)
+
+		print(out)
