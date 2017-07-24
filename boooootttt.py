@@ -223,7 +223,7 @@ class bot():
 		date = date_time.date()
 		time = date_time.time()
 
-		out = str(date.month) + '/' + str(date.day) + '/' + str(date.year) + ' at ' + str(time.hour) + ':' + str(time.minute) + ' ' + text + '\n'
+		out = str(date.month) + '/' + str(date.day) + '/' + str(date.year) + ' at ' + str(time.hour) + ':' + str(time.minute) + ' ' + str(text) + '\n'
 		with open('log.txt','a') as outfile:
 			outfile.write(out)
 

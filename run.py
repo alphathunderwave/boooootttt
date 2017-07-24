@@ -20,7 +20,9 @@ with open('database.txt','r') as infile:
 
 randcount = random.randint(20,50)
 
-while True:
+bot_.dump()
+
+'''while True:
 	count = 0
 	sleepnum = random.randint(3600,10800)
 	text = markov.generate_markov_text()
@@ -34,4 +36,4 @@ while True:
 	else:
 		bot_.do_tweet(text)
 		count = count + 1
-	sleep(sleepnum)
+	sleep(sleepnum)'''
