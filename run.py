@@ -4,6 +4,8 @@ import tweepy, random
 import markovgen
 from time import sleep
 import boooootttt as bot
+import recurrent_keras
+import os.path
 
 """creates a new instance of boooootttt"""
 
@@ -20,7 +22,16 @@ with open('database.txt','r') as infile:
 
 randcount = random.randint(20,50)
 
-while True:
+recurrent_keras.recurrent(DATA_DIR = './data/beeeeennnn_.txt')
+for follower in bot_.api.followers():
+	screen_name = follower.screen_name
+	print(screen_name)
+	if os.path.exists('./data/' + screen_name + '.txt'):
+		recurrent_keras.recurrent(DATA_DIR = './data/' + screen_name + '.txt', WEIGHTS = './saved/model.hdf5')
+	else:
+		print('no file for ' + screen_name)
+
+'''while True:
 	count = 0
 	sleepnum = random.randint(3600,10800)
 	text = markov.generate_markov_text()
@@ -34,4 +45,4 @@ while True:
 	else:
 		bot_.do_tweet(text)
 		count = count + 1
-	sleep(sleepnum)
+	sleep(sleepnum)'''

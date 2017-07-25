@@ -44,7 +44,7 @@ def get_all_tweets(screen_name):
 
 		print("...%s tweets downloaded so far" % (len(alltweets)))
 
-		with open('./database.txt','a') as outfile:
+		with open('./data/' + screen_name + '.txt','w') as outfile:
 			for tweet in alltweets:
 				if 'RT' in tweet.text:
 					pass

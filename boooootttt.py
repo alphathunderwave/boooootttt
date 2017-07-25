@@ -144,8 +144,6 @@ class bot():
 
 	def dump(self):
 		bad_followers = []
-		with open('database.txt','w') as outfile:
-			outfile.write('')
 		for follower in self.api.followers():
 			self.log(follower.screen_name)
 			try:
