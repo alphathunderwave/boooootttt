@@ -22,16 +22,7 @@ with open('database.txt','r') as infile:
 
 randcount = random.randint(20,50)
 
-recurrent_keras.recurrent(DATA_DIR = './data/beeeeennnn_.txt')
-for follower in bot_.api.followers():
-	screen_name = follower.screen_name
-	print(screen_name)
-	if os.path.exists('./data/' + screen_name + '.txt'):
-		recurrent_keras.recurrent(DATA_DIR = './data/' + screen_name + '.txt', WEIGHTS = './saved/model.hdf5')
-	else:
-		print('no file for ' + screen_name)
-
-'''while True:
+while True:
 	count = 0
 	sleepnum = random.randint(3600,10800)
 	text = markov.generate_markov_text()
@@ -45,4 +36,4 @@ for follower in bot_.api.followers():
 	else:
 		bot_.do_tweet(text)
 		count = count + 1
-	sleep(sleepnum)'''
+	sleep(sleepnum)
