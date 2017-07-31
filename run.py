@@ -4,8 +4,7 @@ import tweepy, random
 import markovgen
 from time import sleep
 import boooootttt as bot
-import recurrent_keras
-import os.path
+import os
 
 """creates a new instance of boooootttt"""
 
@@ -22,7 +21,10 @@ with open('database.txt','r') as infile:
 
 randcount = random.randint(20,50)
 
-while True:
+
+bot_.dump()
+
+'''while True:
 	count = 0
 	sleepnum = random.randint(3600,10800)
 	text = markov.generate_markov_text()
@@ -36,4 +38,4 @@ while True:
 	else:
 		bot_.do_tweet(text)
 		count = count + 1
-	sleep(sleepnum)
+	sleep(sleepnum)'''

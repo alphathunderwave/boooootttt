@@ -142,7 +142,7 @@ class bot():
 	"""dump uses tweetdumper to make a list of all the tweets for each follower.
 		these tweets are written to a file named database.txt"""
 
-	def dump(self):
+	def temp_dump(self):
 		bad_followers = []
 		for follower in self.api.followers():
 			self.log(follower.screen_name)
@@ -155,6 +155,25 @@ class bot():
 
 		return bad_followers
 
+	def dump(self):
+		with open('database.txt','w') as outfile:
+			outfile.write('')
+		bad_followers = []
+		for follower in self.api.followers():
+			self.log('dump ' + follower.screen_name)
+			try:
+				tweets = self.api.user_timeline(follower.screen_name,count=200)
+				print(len(tweets))
+				for tweet in tweets:
+					with open('database.txt','a') as outfile:
+						if 'RT' in tweet.text:
+							pass
+						else:
+							outfile.write(tweet.text + ' ')
+
+			except tweepy.TweepError as e:
+				self.log(e)
+				bad_followers.append(follower.screen_name)
 
 	"""check_followers is a function that follows any new followers that the bot
 	 is not already following"""
