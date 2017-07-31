@@ -1,0 +1,117 @@
+7/19/2017 at 23:48 Listening
+7/20/2017 at 12:42 vinnyl1112
+7/20/2017 at 12:42 JayDeatts
+7/20/2017 at 12:43 DereKaczorowski
+7/20/2017 at 12:44 vinnyl1112
+7/20/2017 at 12:44 JayDeatts
+7/20/2017 at 12:45 DereKaczorowski
+7/20/2017 at 12:45 Not authorized.
+7/20/2017 at 12:45 ShaRenczkowski4
+7/20/2017 at 12:46 AngeliaKowalski
+7/20/2017 at 12:47 TrickyDick299
+7/20/2017 at 12:48 kelseycad98
+7/20/2017 at 12:50 jackdigiac
+7/20/2017 at 12:51 Molly_PC
+7/20/2017 at 12:56 vinnyl1112
+7/20/2017 at 12:57 JayDeatts
+7/20/2017 at 12:57 DereKaczorowski
+7/20/2017 at 12:57 Not authorized.
+7/20/2017 at 12:57 ShaRenczkowski4
+7/20/2017 at 12:58 AngeliaKowalski
+7/20/2017 at 12:59 TrickyDick299
+7/20/2017 at 13:0 kelseycad98
+7/20/2017 at 13:1 jackdigiac
+7/20/2017 at 13:2 Molly_PC
+7/20/2017 at 13:3 ERuthie21
+7/20/2017 at 13:4 beeeeennnn_
+7/23/2017 at 22:48 vinnyl1112
+7/23/2017 at 22:49 JayDeatts
+7/23/2017 at 22:50 vinnyl1112
+7/23/2017 at 22:51 vinnyl1112
+7/23/2017 at 22:52 JayDeatts
+7/23/2017 at 22:55 DereKaczorowski
+7/23/2017 at 22:56 Not authorized.
+7/23/2017 at 22:56 ShaRenczkowski4
+7/23/2017 at 22:59 AngeliaKowalski
+7/23/2017 at 23:2 TrickyDick299
+7/23/2017 at 23:6 kelseycad98
+7/23/2017 at 23:10 jackdigiac
+7/23/2017 at 23:16 Molly_PC
+7/23/2017 at 23:20 ERuthie21
+7/23/2017 at 23:24 beeeeennnn_
+7/24/2017 at 12:2 vinnyl1112
+7/24/2017 at 12:2 JayDeatts
+7/24/2017 at 12:3 DereKaczorowski
+7/24/2017 at 12:3 Not authorized.
+7/24/2017 at 12:3 ShaRenczkowski4
+7/24/2017 at 12:4 AngeliaKowalski
+7/24/2017 at 12:5 TrickyDick299
+7/24/2017 at 12:5 kelseycad98
+7/24/2017 at 12:6 jackdigiac
+7/24/2017 at 12:29 vinnyl1112
+7/24/2017 at 12:30 JayDeatts
+7/24/2017 at 12:31 DereKaczorowski
+7/24/2017 at 12:31 Not authorized.
+7/24/2017 at 12:31 ShaRenczkowski4
+7/24/2017 at 12:32 AngeliaKowalski
+7/24/2017 at 12:33 TrickyDick299
+7/24/2017 at 12:34 kelseycad98
+7/24/2017 at 12:36 jackdigiac
+7/24/2017 at 12:37 Molly_PC
+7/24/2017 at 12:38 ERuthie21
+7/24/2017 at 12:39 beeeeennnn_
+7/25/2017 at 16:8 vinnyl1112
+7/25/2017 at 16:8 JayDeatts
+7/25/2017 at 16:8 DereKaczorowski
+7/25/2017 at 16:8 Not authorized.
+7/25/2017 at 16:8 ShaRenczkowski4
+7/25/2017 at 16:9 vinnyl1112
+7/25/2017 at 16:9 JayDeatts
+7/25/2017 at 16:10 DereKaczorowski
+7/25/2017 at 16:10 Not authorized.
+7/25/2017 at 16:10 ShaRenczkowski4
+7/25/2017 at 16:11 AngeliaKowalski
+7/25/2017 at 16:12 TrickyDick299
+7/25/2017 at 16:13 kelseycad98
+7/25/2017 at 16:14 jackdigiac
+7/25/2017 at 16:15 Molly_PC
+7/25/2017 at 16:15 ERuthie21
+7/25/2017 at 16:16 beeeeennnn_
+7/25/2017 at 19:36 Attempt to have a second RNNCell use the weights of a variable scope that already has weights: 'char_rnn_network/rnn/multi_rnn_cell/cell_0/basic_lstm_cell'; and the cell was not constructed as BasicLSTMCell(..., reuse=True).  To share the weights of an RNNCell, simply reuse it in your second calculation, or create a new one with the argument reuse=True.
+7/25/2017 at 19:36 Attempt to have a second RNNCell use the weights of a variable scope that already has weights: 'char_rnn_network/rnn/multi_rnn_cell/cell_0/basic_lstm_cell'; and the cell was not constructed as BasicLSTMCell(..., reuse=True).  To share the weights of an RNNCell, simply reuse it in your second calculation, or create a new one with the argument reuse=True.
+7/25/2017 at 19:36 Attempt to have a second RNNCell use the weights of a variable scope that already has weights: 'char_rnn_network/rnn/multi_rnn_cell/cell_0/basic_lstm_cell'; and the cell was not constructed as BasicLSTMCell(..., reuse=True).  To share the weights of an RNNCell, simply reuse it in your second calculation, or create a new one with the argument reuse=True.
+7/25/2017 at 19:36 Attempt to have a second RNNCell use the weights of a variable scope that already has weights: 'char_rnn_network/rnn/multi_rnn_cell/cell_0/basic_lstm_cell'; and the cell was not constructed as BasicLSTMCell(..., reuse=True).  To share the weights of an RNNCell, simply reuse it in your second calculation, or create a new one with the argument reuse=True.
+7/25/2017 at 19:36 Attempt to have a second RNNCell use the weights of a variable scope that already has weights: 'char_rnn_network/rnn/multi_rnn_cell/cell_0/basic_lstm_cell'; and the cell was not constructed as BasicLSTMCell(..., reuse=True).  To share the weights of an RNNCell, simply reuse it in your second calculation, or create a new one with the argument reuse=True.
+7/25/2017 at 19:36 Attempt to have a second RNNCell use the weights of a variable scope that already has weights: 'char_rnn_network/rnn/multi_rnn_cell/cell_0/basic_lstm_cell'; and the cell was not constructed as BasicLSTMCell(..., reuse=True).  To share the weights of an RNNCell, simply reuse it in your second calculation, or create a new one with the argument reuse=True.
+7/25/2017 at 19:36 Attempt to have a second RNNCell use the weights of a variable scope that already has weights: 'char_rnn_network/rnn/multi_rnn_cell/cell_0/basic_lstm_cell'; and the cell was not constructed as BasicLSTMCell(..., reuse=True).  To share the weights of an RNNCell, simply reuse it in your second calculation, or create a new one with the argument reuse=True.
+7/25/2017 at 19:36 Attempt to have a second RNNCell use the weights of a variable scope that already has weights: 'char_rnn_network/rnn/multi_rnn_cell/cell_0/basic_lstm_cell'; and the cell was not constructed as BasicLSTMCell(..., reuse=True).  To share the weights of an RNNCell, simply reuse it in your second calculation, or create a new one with the argument reuse=True.
+7/25/2017 at 19:37 Attempt to have a second RNNCell use the weights of a variable scope that already has weights: 'char_rnn_network/rnn/multi_rnn_cell/cell_0/basic_lstm_cell'; and the cell was not constructed as BasicLSTMCell(..., reuse=True).  To share the weights of an RNNCell, simply reuse it in your second calculation, or create a new one with the argument reuse=True.
+7/25/2017 at 19:37 Attempt to have a second RNNCell use the weights of a variable scope that already has weights: 'char_rnn_network/rnn/multi_rnn_cell/cell_0/basic_lstm_cell'; and the cell was not constructed as BasicLSTMCell(..., reuse=True).  To share the weights of an RNNCell, simply reuse it in your second calculation, or create a new one with the argument reuse=True.
+7/25/2017 at 19:37 Attempt to have a second RNNCell use the weights of a variable scope that already has weights: 'char_rnn_network/rnn/multi_rnn_cell/cell_0/basic_lstm_cell'; and the cell was not constructed as BasicLSTMCell(..., reuse=True).  To share the weights of an RNNCell, simply reuse it in your second calculation, or create a new one with the argument reuse=True.
+7/30/2017 at 22:30 dump vinnyl1112
+7/30/2017 at 22:30 dump JayDeatts
+7/30/2017 at 22:30 dump DereKaczorowski
+7/30/2017 at 22:30 Not authorized.
+7/30/2017 at 22:30 dump ShaRenczkowski4
+7/30/2017 at 22:30 dump AngeliaKowalski
+7/30/2017 at 22:30 dump TrickyDick299
+7/30/2017 at 22:30 dump kelseycad98
+7/30/2017 at 22:32 dump vinnyl1112
+7/30/2017 at 22:32 dump JayDeatts
+7/30/2017 at 22:33 dump vinnyl1112
+7/30/2017 at 22:33 dump JayDeatts
+7/30/2017 at 22:33 dump DereKaczorowski
+7/30/2017 at 22:33 Not authorized.
+7/30/2017 at 22:33 dump ShaRenczkowski4
+7/30/2017 at 22:33 dump AngeliaKowalski
+7/30/2017 at 22:33 dump TrickyDick299
+7/30/2017 at 22:33 dump kelseycad98
+7/30/2017 at 22:33 dump jackdigiac
+7/30/2017 at 22:33 dump Molly_PC
+7/30/2017 at 22:34 dump ERuthie21
+7/30/2017 at 22:34 dump beeeeennnn_
+7/30/2017 at 22:34 dump vinnyl1112
+7/30/2017 at 22:34 dump JayDeatts
+7/30/2017 at 22:35 dump DereKaczorowski
+7/30/2017 at 22:35 Not authorized.
+7/30/2017 at 22:35 dump ShaRenczkowski4
