@@ -7,7 +7,6 @@ from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 from tweepy import Stream
 import boooootttt as bot
-import recrrent_keras
 
 """creates a new instance of bot, an incremental count and a list of developers
 	(beeeeennnn_ is default)"""

@@ -142,7 +142,9 @@ class bot():
 	"""dump uses tweetdumper to make a list of all the tweets for each follower.
 		these tweets are written to a file named database.txt"""
 
-	def temp_dump(self):
+	def dump(self):
+		with open('database.txt','w') as outfile:
+			outfile.write('')
 		bad_followers = []
 		for follower in self.api.followers():
 			self.log(follower.screen_name)
@@ -155,7 +157,7 @@ class bot():
 
 		return bad_followers
 
-	def dump(self):
+	def temp_dump(self):
 		with open('database.txt','w') as outfile:
 			outfile.write('')
 		bad_followers = []

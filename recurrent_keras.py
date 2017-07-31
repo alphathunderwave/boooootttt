@@ -29,10 +29,9 @@ def recurrent(mode='train', MODEL = '',WEIGHTS = ''):
     X, y, VOCAB_SIZE, ix_to_char = load_data(DATA_DIR, SEQ_LENGTH)
 
     if not MODEL == '':
-        print('load model')
         model = load_model(MODEL)
+        model.load_weights(WEIGHTS)
     else:
-        print('new model')
         model = Sequential()
         # Creating and compiling the Network
         model.add(LSTM(HIDDEN_DIM, input_shape=(None, VOCAB_SIZE), return_sequences=True))
@@ -67,4 +66,4 @@ def recurrent(mode='train', MODEL = '',WEIGHTS = ''):
 
     return True
 
-recurrent(mode = 'train', MODEL = './saved/model.hdf5')
+recurrent(mode = 'train', MODEL = './saved/model.hdf5',WEIGHTS = './saved/weights.hdf5')
