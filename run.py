@@ -5,6 +5,8 @@ import markovgen
 from time import sleep
 import boooootttt as bot
 import os
+import recrrent_keras
+
 
 """creates a new instance of boooootttt"""
 
@@ -20,6 +22,8 @@ with open('database.txt','r') as infile:
 	hours"""
 
 randcount = random.randint(20,50)
+
+
 
 
 bot_.dump()
