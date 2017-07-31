@@ -24,7 +24,7 @@ randcount = random.randint(20,50)
 
 while True:
 	count = 0
-	sleepnum = random.randint(3600,10800)
+	sleepnum = random.randint(36000,108000)
 	text = markov.generate_markov_text()
 	if count == randcount:
 		if random.choice([True,False]):
