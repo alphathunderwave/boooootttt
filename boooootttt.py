@@ -24,7 +24,7 @@ class bot():
 		ACCESS_SECRET = config.ACCESS_SECRET
 		self.auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 		self.auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
-		self.api = tweepy.API(auth, wait_on_rate_limit = True)
+		self.api = tweepy.API(self.auth, wait_on_rate_limit = True)
 		self.reddit = praw.Reddit(username = config.username,password = config.password, client_id = config.client_id, client_secret = config.client_secret, user_agent = "boooootttt test bot 0.1")
 		self.subreddit = self.reddit.subreddit('totallynotrobots')
 
