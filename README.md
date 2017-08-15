@@ -1,3 +1,3 @@
 # Boooootttt
 
-@boooootttt_ is a twitter bot that uses its followers as a vocabulary to generate semi-random tweets using markov chains. 
+@boooootttt_ is totally not a robot that is definitely tweeting and not just stealing from totallynotrobots 
