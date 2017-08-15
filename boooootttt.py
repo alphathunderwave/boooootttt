@@ -62,7 +62,7 @@ class bot():
 	 characters"""
 
 	def reply(self,status):
-		ids = self.read_ids(status).split(' ')
+		ids = self.read_ids(status).split(' ') #this isnt working rn~~~~~~~~~~
 		tid = ids[0]
 		rid = ids[1]
 		submission = praw.models.Submission(self.reddit,id=rid)
@@ -72,8 +72,10 @@ class bot():
 			rando = random.randint(0,9)
 			if rando == 5:
 				break
-		print(text)
-
+		status = self.api.update_status(text[0:140],status)
+		tid = status.id
+		self.log('tweet sent')
+		self.write_ids(rid,tid)
 
 	"""wrtite_tweet writes a sent tweet to a file for saving"""
 
@@ -82,12 +84,10 @@ class bot():
 			outfile.write(str(tid) + " " + str(rid) + '\n')
 
 	def read_ids(self,status):
-		tid = str(status.id)
 		with open('tweetlist.txt','r') as infile:
 			ids = infile.readlines()
-		for i in ids:
-			if tid in i:
-				return i
+		i = ids[len(ids)-1]
+		return i
 
 	"""logs the successes and failures of the bot"""
 
