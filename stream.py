@@ -1,7 +1,6 @@
 """import functions to use"""
 
 import tweepy, random
-import markovgen
 from time import sleep
 from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
@@ -36,11 +35,10 @@ class StdOutListener(StreamListener):
 
 			else:
 				"""this is the general reply for anyone who tagged the bot"""
-				response = markov.generate_markov_text()
-				bot_.reply(status,str(response))
+				bot_.reply(status)
 		except tweepy.TweepError as e:
 			bot_.log(e)
-			
+
 		return True
 
 
@@ -56,8 +54,6 @@ class StdOutListener(StreamListener):
 	stream know we are only looking for ourself being mentioned"""
 
 l = StdOutListener()
-with open('database.txt','r') as infile:
-	markov = markovgen.Markov(infile)
 
 bot_.log('Listening')
 stream = Stream(bot_.auth, l)

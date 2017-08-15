@@ -43,15 +43,16 @@ class bot():
 				pass
 			elif rando == 5:
 				break
-		print(title)
+		rid = submission.id
 		if submission.url:
-			print(submission.url)
 			urllib.request.urlretrieve(submission.url, "temp.jpg")
 
 		try:
-			self.api.update_with_media('temp.jpg',status=title[0:140])
+			status = self.api.update_with_media('temp.jpg',status=title[0:140])
+			tid = status.id
 			self.log('tweet sent')
-			self.write_tweet(title)
+			self.write_ids(rid,tid)
+
 		except tweepy.TweepError as e:
 			self.log(e)
 
@@ -60,15 +61,33 @@ class bot():
 	reply to the status. like the do_tweet function, the tweet is limited to 140
 	 characters"""
 
-	def reply(self,status,text):
-		print('not finished')
+	def reply(self,status):
+		ids = self.read_ids(status).split(' ')
+		tid = ids[0]
+		rid = ids[1]
+		submission = praw.models.Submission(self.reddit,id=rid)
+
+		for comment in submission.comments:
+			text = comment.body
+			rando = random.randint(0,9)
+			if rando == 5:
+				break
+		print(text)
 
 
 	"""wrtite_tweet writes a sent tweet to a file for saving"""
 
-	def write_tweet(self,text):
+	def write_ids(self,rid,tid):
 		with open('tweetlist.txt','a') as outfile:
-			outfile.write(text)
+			outfile.write(str(tid) + " " + str(rid) + '\n')
+
+	def read_ids(self,status):
+		tid = str(status.id)
+		with open('tweetlist.txt','r') as infile:
+			ids = infile.readlines()
+		for i in ids:
+			if tid in i:
+				return i
 
 	"""logs the successes and failures of the bot"""
 
@@ -83,5 +102,3 @@ class bot():
 			outfile.write(out)
 
 		print(out)
-bot_ = bot()
-bot_.do_tweet()
