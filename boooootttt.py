@@ -51,23 +51,21 @@ class bot():
 	 characters"""
 
 	def reply(self,status):
-		ids = self.read_ids(status).split(' ') #this isnt working rn~~~~~~~~~~
-		tid = ids[0]
-		rid = ids[1]
-		'''
-		submission = praw.models.Submission(self.reddit,id=rid)
+			try:
+				random_follower = self.api.followers()[random.randint(0,len(self.api.followers()))]
 
-		for comment in submission.comments:
-			#text = comment.body
-			rando = random.randint(0,9)
-			if rando == 5:
-				break
-		status = self.api.update_status(text[0:140],status)
-		tid = status.id
-		self.log('tweet sent')
-		self.write_ids(rid,tid)'''
+				with open("tweets/" + random_follower.screen_name + '_tweets.txt', 'r') as f:
+					text = f.read()
+				text_model = markovify.NewlineText(text)
 
-	"""downloads all tweeets by a user using tweetdumper"""
+				out = text_model.make_short_sentence(140)
+				status = self.api.update_status(out[0:140],status)
+				tid = status.id
+				self.log('Tweet Sent')
+
+			except tweepy.TweepError as e:
+				self.log('Tweet Failed')
+				self.log(e)
 
 	def dump_tweets(self):
 		for follower in self.api.followers():

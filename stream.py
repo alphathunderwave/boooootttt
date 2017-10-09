@@ -38,6 +38,7 @@ class StdOutListener(StreamListener):
 			else:
 				"""this is the general reply for anyone who tagged the bot"""
 				bot_.reply(status)
+				
 		except tweepy.TweepError as e:
 			bot_.log('Stream Failed')
 			bot_.log(e)
