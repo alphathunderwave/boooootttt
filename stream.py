@@ -39,6 +39,7 @@ class StdOutListener(StreamListener):
 				"""this is the general reply for anyone who tagged the bot"""
 				bot_.reply(status)
 		except tweepy.TweepError as e:
+			bot_.log('Stream Failed')
 			bot_.log(e)
 
 		return True
@@ -56,7 +57,7 @@ class StdOutListener(StreamListener):
 	stream know we are only looking for ourself being mentioned"""
 
 l = StdOutListener()
-
-bot_.log('Stream Started: Listening')
-stream = Stream(bot_.auth, l)
-stream.userstream(_with='user')
+while True:
+	bot_.log('Stream Started: Listening')
+	stream = Stream(bot_.auth, l)
+	stream.userstream(_with='user')

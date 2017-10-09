@@ -1,9 +1,8 @@
 """import functions to use"""
 
-import tweepy, random
+import tweepy, random, os
 from time import sleep
 import boooootttt as bot
-import os
 
 
 """creates a new instance of boooootttt"""
@@ -11,7 +10,7 @@ import os
 bot_ = bot.bot()
 
 randcount = random.randint(20,50)
-
+#bot_.dump_tweets()
 while True:
 	sleepnum = random.randint(36000,108000)
 	bot_.do_tweet()

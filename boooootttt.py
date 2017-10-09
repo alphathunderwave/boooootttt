@@ -1,15 +1,10 @@
 """import funtions to use"""
 
-import tweepy, sys, random, datetime
+import tweepy, sys, random, datetime, config, markovify, tweetdumper
 from time import sleep
 from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 from tweepy import Stream
-import config
-import praw
-import urllib.request
-
-
 
 class bot():
 
@@ -25,8 +20,8 @@ class bot():
 		self.auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 		self.auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 		self.api = tweepy.API(self.auth, wait_on_rate_limit = True)
-		self.reddit = praw.Reddit(username = config.username,password = config.password, client_id = config.client_id, client_secret = config.client_secret, user_agent = "boooootttt test bot 0.1")
-		self.subreddit = self.reddit.subreddit('totallynotrobots')
+		#self.reddit = praw.Reddit(username = config.username,password = config.password, client_id = config.client_id, client_secret = config.client_secret, user_agent = "boooootttt test bot 0.1")
+		#self.subreddit = self.reddit.subreddit('totallynotrobots')
 
 
 	"""do_tweet takes in a string and submits it to twitter. the text is trimmed
@@ -34,26 +29,20 @@ class bot():
 	 characters"""
 
 	def do_tweet(self):
-		for submission in self.subreddit.hot(limit=50):
-			rando = random.randint(0,20)
-			title = submission.title
-			if '[STICKY]' in title:
-				pass
-			elif '.jpg' not in submission.url:
-				pass
-			elif rando == 5:
-				break
-		rid = submission.id
-		if submission.url:
-			urllib.request.urlretrieve(submission.url, "temp.jpg")
-
 		try:
-			status = self.api.update_with_media('temp.jpg',status=title[0:140])
+			random_follower = self.api.followers()[random.randint(0,len(self.api.followers()))]
+
+			with open("tweets/" + random_follower.screen_name + '_tweets.txt', 'r') as f:
+				text = f.read()
+			text_model = markovify.NewlineText(text)
+
+			out = text_model.make_short_sentence(140)
+			status = self.api.update_status(out[0:140])
 			tid = status.id
 			self.log('Tweet Sent')
-			self.write_ids(rid,tid)
 
 		except tweepy.TweepError as e:
+			self.log('Tweet Failed')
 			self.log(e)
 
 
@@ -65,29 +54,28 @@ class bot():
 		ids = self.read_ids(status).split(' ') #this isnt working rn~~~~~~~~~~
 		tid = ids[0]
 		rid = ids[1]
+		'''
 		submission = praw.models.Submission(self.reddit,id=rid)
 
 		for comment in submission.comments:
-			text = comment.body
+			#text = comment.body
 			rando = random.randint(0,9)
 			if rando == 5:
 				break
 		status = self.api.update_status(text[0:140],status)
 		tid = status.id
 		self.log('tweet sent')
-		self.write_ids(rid,tid)
+		self.write_ids(rid,tid)'''
 
-	"""wrtite_tweet writes a sent tweet to a file for saving"""
+	"""downloads all tweeets by a user using tweetdumper"""
 
-	def write_ids(self,rid,tid):
-		with open('tweetlist.txt','a') as outfile:
-			outfile.write(str(tid) + " " + str(rid) + '\n')
-
-	def read_ids(self,status):
-		with open('tweetlist.txt','r') as infile:
-			ids = infile.readlines()
-		i = ids[len(ids)-1]
-		return i
+	def dump_tweets(self):
+		for follower in self.api.followers():
+			try:
+				tweetdumper.get_all_tweets(follower.screen_name)
+			except Exception as e:
+				self.log('Dump Failed')
+				self.log(e)
 
 	"""logs the successes and failures of the bot"""
 
