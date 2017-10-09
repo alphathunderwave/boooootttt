@@ -21,10 +21,12 @@ class StdOutListener(StreamListener):
 		try:
 			"""this counter only lets the bot run 15 times, then it waits for
 				15 minutes to protect overusing twitter"""
+			bot_.log('Status Received')
 
 			global count
 			count = count + 1
 			if count == 15:
+				bot_.log('Max Tweet Reached, Restarting count')
 				sleep(900)
 				count =0
 
@@ -55,6 +57,6 @@ class StdOutListener(StreamListener):
 
 l = StdOutListener()
 
-bot_.log('Listening')
+bot_.log('Stream Started: Listening')
 stream = Stream(bot_.auth, l)
 stream.userstream(_with='user')

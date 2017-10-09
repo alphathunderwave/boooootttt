@@ -50,7 +50,7 @@ class bot():
 		try:
 			status = self.api.update_with_media('temp.jpg',status=title[0:140])
 			tid = status.id
-			self.log('tweet sent')
+			self.log('Tweet Sent')
 			self.write_ids(rid,tid)
 
 		except tweepy.TweepError as e:
